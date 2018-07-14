@@ -1,15 +1,21 @@
-<h1>Dojo Forum 前台</h1>
+<div class="container">
+  <div class="row">
 
-<ul>
-  <% @articles.each do |article| %>
-    <% if article.status == "publish" %>
-      <li>
-        <%= article.title %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+    <h1>Dojo Forum 前台</h1>
 
-<%= paginate @articles %>
+    <ul>
+      <% @articles.each do |article| %>
+        <% if article.status == "publish" %>
+          <li>
+            <%= article.title %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
 
-<%= link_to 'New Article', new_article_path %>
+    <%= paginate @articles %>
+
+    <%= link_to 'New Article', new_article_path %>
+
+  </div>
+</div>
