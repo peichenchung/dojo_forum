@@ -1,1 +1,13 @@
 <h1>Dojo Forum 前台</h1>
+
+<ul>
+  <% @articles.each do |article| %>
+  <li>
+    <%= article.title %>
+  </li>
+  <% end %>
+</ul>
+
+<%= paginate @articles %>
+
+<%= link_to 'New Article', new_article_path %>
