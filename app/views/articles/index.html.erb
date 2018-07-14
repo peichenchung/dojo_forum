@@ -2,9 +2,11 @@
 
 <ul>
   <% @articles.each do |article| %>
-  <li>
-    <%= article.title %>
-  </li>
+    <% if article.status == "publish" %>
+      <li>
+        <%= article.title %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 
