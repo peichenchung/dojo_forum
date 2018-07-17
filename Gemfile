@@ -38,6 +38,7 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'hirb-unicode'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
