@@ -29,6 +29,10 @@ class ArticlesController < ApplicationController
 
   def edit
     #@article = Article.find(params[:id])
+    if current_user.id != @article.user_id
+      redirect_to root_path
+      flash.now[:alert] = "Not allow!!"
+    end
   end
 
   def update
@@ -44,9 +48,12 @@ class ArticlesController < ApplicationController
 
   def destroy
     #@article = Article.find(params[:id])
-    @article.destroy
-    redirect_to root_path
-    flash[:alert] = "article deleted"
+
+    if current_user.id == @article.user_id
+      @article.destroy
+      redirect_to root_path
+      flash[:alert] = "article deleted"
+    end
   end
 
 
