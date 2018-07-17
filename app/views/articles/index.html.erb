@@ -7,7 +7,9 @@
       <% @articles.each do |article| %>
         <% if article.status == "publish" %>
           <li>
-            <%= article.title %>
+            <%= link_to article_path(article) do %>
+              <%= article.title %>
+            <% end %>
           </li>
         <% end %>
       <% end %>
