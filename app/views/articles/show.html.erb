@@ -13,6 +13,10 @@
 
     <br>
 
+    <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %>
+
+    <br>
+
     <%= link_to 'Back to Index', root_path %>
 
   </div>

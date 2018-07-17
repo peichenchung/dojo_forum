@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_article, only: [:show, :edit, :update]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   def index
     @articles = Article.page(params[:page]).per(20)
@@ -40,6 +40,13 @@ class ArticlesController < ApplicationController
       flash.now[:alert] = "failed to update"
       render :edit
     end
+  end
+
+  def destroy
+    #@article = Article.find(params[:id])
+    @article.destroy
+    redirect_to root_path
+    flash[:alert] = "article deleted"
   end
 
 
