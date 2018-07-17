@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
     #@article = Article.find(params[:id])
     if current_user.id != @article.user_id
       redirect_to root_path
-      flash.now[:alert] = "Not allow!!"
+      flash[:alert] = "Not allow!!"
     end
   end
 
