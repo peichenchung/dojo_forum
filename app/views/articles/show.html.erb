@@ -3,8 +3,11 @@
     
     <h1><%= @article.title %></h1>
 
-    <%= @article.content %>
+    <% if @article.image? %>
+      <%= image_tag @article.image.url %>
+    <% end %>
 
+    <p><%= simple_format(@article.content) %></p>
 
     <%= link_to 'Back to Index', root_path %>
 
