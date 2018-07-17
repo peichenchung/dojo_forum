@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+
+    <% if @article.errors.any? %>
+      <h2>ERROR!!</h2>
+      <ul>
+        <% @article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+
+    <%= form_for @article do |f| %>
+      <div class="form-group">
+        <%= f.label :title, 'Title' %>
+        <%= f.text_field :title %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content, 'Content' %>
+        <%= f.text_area :content %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image, 'Image' %>
+        <%= f.file_field :image %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :status, 'Status' %>
+        <%= f.select :status, [ 'draft', 'publish' ] %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit %>
+      </div>
+
+      <%= link_to 'Back to Index', articles_path %>
+    <% end %>
+
+  </div>
+</div>
