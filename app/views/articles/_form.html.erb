@@ -33,8 +33,11 @@
       </div>
 
       <div class="form-group">
-        <%= f.label 'Categories' %>
-        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+        <%= hidden_field_tag "article[category_ids][]", nil %>
+        <% Category.all.each do |category| %>
+          <%= check_box_tag "article[category_ids][]", category.id, @article.category_ids.include?(category.id) %>
+          <%= category.name %><br>
+        <% end %>
       </div>
 
       <div class="form-group">

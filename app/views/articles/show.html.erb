@@ -8,8 +8,9 @@
     <% end %>
 
     <% if @article.categories.any? %>
+      文章類別：
       <% @article.categories.each do |category| %>
-        文章類別：<%= category.name %>
+        <%= category.name %>
       <% end %>
     <% end %>
 
