@@ -29,7 +29,7 @@
             <% if current_user %>
               <li>
                 <p class="navbar-text">
-                  Hi, <%= current_user.email %>
+                  Hi, <%= current_user.name %>
                   <% if current_user.admin? %>
                     (admin)
                   <% end %>       
