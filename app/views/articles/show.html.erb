@@ -7,6 +7,12 @@
       <%= image_tag @article.image.url %>
     <% end %>
 
+    <% if @article.categories.any? %>
+      <% @article.categories.each do |category| %>
+        文章類別：<%= category.name %>
+      <% end %>
+    <% end %>
+
     <p><%= simple_format(@article.content) %></p>
 
     <% if current_user.id == @article.user_id %>
