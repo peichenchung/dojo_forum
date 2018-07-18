@@ -4,5 +4,6 @@ class Admin::ArticlesController < ApplicationController
 
   def index
     @categories = Category.all
+    @category = Category.new
   end
 end
