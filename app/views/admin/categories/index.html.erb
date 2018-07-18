@@ -32,7 +32,9 @@
           <% @categories.each do |category| %>
           <tr>
             <td><%= category.name %></td>
-            <td>Edit | Delete</td>
+            <td>
+              <%= link_to 'Edit', admin_categories_path(id: category.id) %>
+            </td>
           </tr>
           <% end %>
         </tbody>
