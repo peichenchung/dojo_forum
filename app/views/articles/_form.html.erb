@@ -24,6 +24,7 @@
 
       <div class="form-group">
         <%= f.label :image, 'Image' %>
+        <%= image_tag @article.image.url, width: '150px' if @article.image? %>
         <%= f.file_field :image %>
       </div>
 
