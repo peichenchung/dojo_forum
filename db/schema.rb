@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_18_135335) do
+ActiveRecord::Schema.define(version: 2018_07_18_154914) do
 
   create_table "article_categories", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2018_07_18_135335) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "role"
+    t.string "role", default: "normal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
