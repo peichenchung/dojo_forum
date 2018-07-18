@@ -3,8 +3,16 @@
 
     <h1>Dojo Forum 後台</h1>
 
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><%= link_to 'Category List' %></li>
+      <li role="presentation"><%= link_to 'User List' %></li>
+    </ul>
+
+    <br>
+
     <% @categories.each do |category| %>
       <%= category.name %>
+      <br>
     <% end %>
 
   </div>
