@@ -23,7 +23,18 @@
           <tr>
             <td><%= user.name %></td>
             <td><%= user.email %></td>
-            <td><%= user.role %></td>
+            <td>
+              <div class="form-inline">
+                <%= form_for [:admin, user] do |f| %>
+                  <div class="form-group">
+                    <%= f.select :role, [ 'normal', 'admin' ] %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.submit 'Update' %>
+                  </div>
+                <% end %>
+              </div>
+            </td>
           </tr>
           <% end %>
         </tbody>
