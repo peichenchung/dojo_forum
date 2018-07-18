@@ -17,7 +17,7 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:notice] = "category created"
       redirect_to admin_categories_path
     else
-      flash[:alert] = "category failed to create, name cannot be blank"
+      flash[:alert] = @category.errors.full_messages.to_sentence
       redirect_to admin_categories_path
     end
   end
@@ -28,16 +28,20 @@ class Admin::CategoriesController < Admin::BaseController
       redirect_to admin_categories_path
       flash[:notice] = "category updated"
     else
-      flash[:alert] = "category failed to update, name cannot be blank"
+      flash[:alert] = @category.errors.full_messages.to_sentence
       redirect_to admin_categories_path
     end
   end
 
   def destroy
     #@category = Category.find(params[:id])
-    @category.destroy
-    flash[:alert] = "category deleted"
-    redirect_to admin_categories_path
+    if @category.destroy
+      flash[:alert] = "category deleted"
+      redirect_to admin_categories_path
+    else
+      flash[:alert] = @category.errors.full_messages.to_sentence
+      redirect_to admin_categories_path
+    end
   end
 
   private
