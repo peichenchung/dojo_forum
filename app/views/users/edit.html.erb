@@ -17,7 +17,7 @@
 
         <div class="form-group">
           <%= f.label :avatar, 'Avatar' %>
-          <%= image_tag @user.avatar, width: '350px' if @user.avatar? %>
+          <%= image_tag @user.avatar.url, width: '100px' if @user.avatar? %>
           <%= f.file_field :avatar %>
         </div>
 
