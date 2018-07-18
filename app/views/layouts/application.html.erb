@@ -35,6 +35,7 @@
                   <% end %>       
                 </p>
               </li>
+              <li><%= link_to 'Profile' %></li>
               <li><%= link_to '後台管理', admin_root_path %></li>
               <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
               <li><%= link_to('修改註冊資料', edit_user_registration_path) %></li>
