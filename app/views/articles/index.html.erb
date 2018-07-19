@@ -1,23 +1,45 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-12">
 
-    <h1>Dojo Forum 前台</h1>
+      <%= link_to 'New Article', new_article_path, class: "btn btn-primary" %>
 
-    <ul>
-      <% @articles.each do |article| %>
-        <% if article.status == "publish" %>
-          <li>
-            <%= link_to article_path(article) do %>
-              <%= article.title %>
+      <br>
+      <br>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td class="col-md-2">Replies count</td>
+            <td class="col-md-6">Title</td>
+            <td class="col-md-2">Last replied at</td>
+            <td class="col-md-2">Viewed count</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @articles.each do |article| %>
+          <tr>
+            <% if article.status == "publish" %>
+              <td></td>
+              <td>
+                <%= link_to article_path(article) do %>
+                  <%= article.title %>
+                <% end %>
+              </td>
+              <td></td>
+              <td></td>
             <% end %>
-          </li>
-        <% end %>
-      <% end %>
-    </ul>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
 
-    <%= paginate @articles %>
+      <div class="col-sm-12 col-md-12">
+        <div class="text-center">
+          <%= paginate @articles %>
+        </div>
+      </div>
 
-    <%= link_to 'New Article', new_article_path %>
-
+    </div>
   </div>
 </div>
