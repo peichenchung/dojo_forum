@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :articles
   resources :users, only: [:show, :edit, :update]
+  resources :categories, only: :show
   root "articles#index"
 
 
