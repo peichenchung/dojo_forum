@@ -40,6 +40,22 @@
             </div>
           </td>
         </tr>
+
+        <% @article.comments.each do |comment| %>
+        <tr>
+          <td class="col-md-3">
+            <% if comment.user.avatar? %>
+                <%= image_tag comment.user.avatar.url, width: '150px' %>
+            <% end %>
+
+            <h4><%= comment.user.name %></h4>    
+          </td>
+
+          <td>
+            <p><%= simple_format(comment.content) %></p>
+          </td>
+        </tr>
+        <% end %>
       </table>
 
       <div class="container">
