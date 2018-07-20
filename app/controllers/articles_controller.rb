@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
   def show
     #@article = Article.find(params[:id])
     @comment = Comment.new
+    @comments = @article.comments.page(params[:page]).per(20)
   end
 
   def edit

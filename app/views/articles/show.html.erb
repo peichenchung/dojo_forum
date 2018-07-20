@@ -41,7 +41,7 @@
           </td>
         </tr>
 
-        <% @article.comments.each do |comment| %>
+        <% @comments.each do |comment| %>
         <tr>
           <td class="col-md-3">
             <% if comment.user.avatar? %>
@@ -68,6 +68,12 @@
             <%= f.submit 'Submit', class: "btn btn-primary" %>
           </div>
         <% end %>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12">
+        <div class="text-center">
+          <%= paginate @comments %>
         </div>
       </div>
 
