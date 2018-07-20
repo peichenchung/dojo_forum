@@ -7,6 +7,16 @@ class CommentsController < ApplicationController
     redirect_to article_path(@article)
   end
 
+  def destroy
+    @article = Article.find(params[:article_id])
+    @comment = Comment.find(params[:id])
+
+    if current_user == @comment.user
+      @comment.destroy
+      redirect_to article_path(@article)
+    end
+  end
+
   private
 
   def comment_params

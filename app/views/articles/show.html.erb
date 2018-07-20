@@ -53,8 +53,13 @@
 
           <td>
             <p><%= simple_format(comment.content) %></p>
-            <%= link_to 'Edit', edit_article_comment_path(comment) %>&emsp;
-            <%= link_to 'Delete', article_comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
+
+            <div>
+              <% if current_user == comment.user %>
+                <%= link_to 'Edit', edit_article_comment_path(@article, comment) %>&emsp;
+                <%= link_to 'Delete', article_comment_path(@article, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+              <% end %>
+            </div>
           </td>
         </tr>
         <% end %>
