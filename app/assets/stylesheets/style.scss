@@ -1,8 +1,7 @@
-.nav-pills-center {
-  text-align: center;
-}
-
-.nav-pills-center > li {
+.nav-pills > li {
   float: none;
   display: inline-block;
+  border: 1px solid #DDDDDD;
+  border-radius: 8px;
+  line-height: 8px;
 }
