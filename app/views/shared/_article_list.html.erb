@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td class="col-md-2">Replies count</td>
+      <td class="col-md-6">Title</td>
+      <td class="col-md-2">Last replied at</td>
+      <td class="col-md-2">Viewed count</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+    <tr>
+      <% if article.status == "publish" %>
+        <td></td>
+        <td>
+          <%= link_to article_path(article) do %>
+            <%= article.title %>
+          <% end %>
+        </td>
+        <td></td>
+        <td></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="col-sm-12 col-md-12">
+  <div class="text-center">
+    <%= paginate @articles %>
+  </div>
+</div>
