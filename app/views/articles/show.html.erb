@@ -67,14 +67,14 @@
 
       <div class="container">
         <div class="row">
-         <%= form_for [@article, @comment] do |f| %>
-          <div class="form-group">
-            <%= f.text_area :content, placeholder: "add comment", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.submit 'Submit', class: "btn btn-primary" %>
-          </div>
-        <% end %>
+          <%= form_for [@article, @comment] do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, placeholder: "add comment", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.submit 'Submit', class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
       </div>
 
