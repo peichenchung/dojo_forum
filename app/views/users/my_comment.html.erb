@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+<!----------------------------------------- 使用者基本info ----------------------------------------->
+      <%= render partial: "profile" %>
+<!-------------------------------------------- 下方區塊 -------------------------------------------->
+
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="col-md-2""><%= link_to 'My Post', user_path(@user) %></li>
+        <li role="presentation" class="active col-md-2"><%= link_to 'My Comment', my_comment_user_path(@user) %></li>
+        <li role="presentation" class="col-md-2"><%= link_to 'My Collect' %></li>
+        <li role="presentation" class="col-md-2"><%= link_to 'My Draft', my_draft_user_path(@user) %></li>
+        <li role="presentation" class="col-md-2"><%= link_to 'My Friend' %></li>
+      </ul>
+
+      <div class="col-md-10">
+        <div class="my-comment">
+          <table class="table table-striped">
+            <% @user.comments.each do |comment| %>
+              <tr>
+                <td>
+                  <h4><%= comment.article.title %></h4>
+                  <p><%= simple_format(comment.content) %></p>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

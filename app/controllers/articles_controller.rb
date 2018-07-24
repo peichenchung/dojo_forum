@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
 
     if current_user.id == @article.user_id
       @article.destroy
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path
       flash[:alert] = "article deleted"
     end
   end
