@@ -7,10 +7,10 @@
 <!-------------------------------------------- 下方區塊 -------------------------------------------->
 
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active col-md-2""><%= link_to 'My Post', user_path(@user) %></li>
+        <li role="presentation" class="col-md-2""><%= link_to 'My Post', user_path(@user) %></li>
         <li role="presentation" class="col-md-2"><%= link_to 'My Comment' %></li>
         <li role="presentation" class="col-md-2"><%= link_to 'My Collect' %></li>
-        <li role="presentation" class="col-md-2"><%= link_to 'My Draft', my_draft_user_path(@user) %></li>
+        <li role="presentation" class="active col-md-2"><%= link_to 'My Draft', my_draft_user_path(@user) %></li>
         <li role="presentation" class="col-md-2"><%= link_to 'My Friend' %></li>
       </ul>
 
@@ -18,7 +18,7 @@
         <div class="my-post">
           <table class="table table-striped">
             <% @user.articles.each do |article| %>
-                <% if article.status == "publish" %>
+                <% if article.status == "draft" %>
                 <tr>
                   <td class="col-md-2">
                     <%= link_to article_path(article) do %>
@@ -41,10 +41,6 @@
         </div>
       </div>
 
-
-
-
-
-    </div><!-- col-md-12 -->
+    </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :my_draft]
 
   def show
     #@user = User.find(params[:id])
@@ -16,6 +16,10 @@ class UsersController < ApplicationController
     #@user = User.find(params[:id])
     @user.update(user_params)
     redirect_to user_path(@user)
+  end
+
+  def my_draft
+    #@user = User.find(params[:id])
   end
 
   private

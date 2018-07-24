@@ -5,7 +5,15 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      get :my_comment
+      get :my_collect
+      get :my_draft
+      get :my_friend
+    end
+  end
+
   resources :categories, only: :show
   root "articles#index"
 
