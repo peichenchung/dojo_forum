@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments
+
+    member do
+      post :collect
+      post :uncollect
+    end
   end
 
   resources :users, only: [:show, :edit, :update] do
