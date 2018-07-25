@@ -19,9 +19,18 @@
           <table class="table table-striped">
             <% @user.comments.each do |comment| %>
               <tr>
-                <td>
+                <td class="col-md-8">
                   <h4><%= comment.article.title %></h4>
                   <p><%= simple_format(comment.content) %></p>
+                </td>
+                <td class="col-md-4">
+                  <br>
+                  <div>
+                    <% if current_user == comment.user %>
+                      <%= link_to 'Edit', edit_article_comment_path(comment.article, comment) %>&emsp;
+                      <%= link_to 'Delete', article_comment_path(comment.article, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+                    <% end %>
+                  </div>
                 </td>
               </tr>
             <% end %>
