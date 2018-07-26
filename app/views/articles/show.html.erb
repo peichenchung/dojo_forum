@@ -3,8 +3,12 @@
     <div class="col-md-12">
 
       <h2><%= @article.title %></h2>
-      <%= link_to 'Collect', collect_article_path(@article), method: :post, class: "btn btn-primary" %>
-      <%= link_to 'Uncollect', uncollect_article_path(@article), method: :post, class: "btn btn-info" %>
+      
+      <% if @article.is_collected?(current_user) %>
+        <%= link_to 'Uncollect', uncollect_article_path(@article), method: :post, class: "btn btn-info" %>
+      <% else %>
+        <%= link_to 'Collect', collect_article_path(@article), method: :post, class: "btn btn-primary" %>
+      <% end %>
 
       <br><br>
 
