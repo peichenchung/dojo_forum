@@ -60,7 +60,11 @@ class ArticlesController < ApplicationController
 
   def collect
     #@article = Article.find(params[:id])
-    @article.collects.create!(user: current_user)
+    if @article.is_collected?(current_user)
+      flash[:alert] = "already in your collect list"
+    else
+      @article.collects.create!(user: current_user)
+    end
     redirect_back(fallback_location: root_path)
   end
 
