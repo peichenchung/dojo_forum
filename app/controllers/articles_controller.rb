@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :collect, :uncollect]
 
   def index
     @articles = Article.page(params[:page]).per(20)
@@ -56,6 +56,19 @@ class ArticlesController < ApplicationController
       redirect_to root_path
       flash[:alert] = "article deleted"
     end
+  end
+
+  def collect
+    #@article = Article.find(params[:id])
+    @article.collects.create!(user: current_user)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def uncollect
+    #@article = Article.find(params[:id])
+    collects = Collect.where(article: @article, user: current_user)
+    collects.destroy_all
+    redirect_back(fallback_location: root_path)
   end
 
 
