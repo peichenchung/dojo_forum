@@ -20,10 +20,16 @@
         <tr>
           <td class="col-md-3">
             <% if @article.user.avatar? %>
+              <%= link_to user_path(@article.user) do %>
                 <%= image_tag @article.user.avatar.url, width: '150px' %>
+              <% end %>
             <% end %>
 
-            <h4><%= @article.user.name %></h4>
+            <h4>
+              <%= link_to user_path(@article.user) do %>
+                <%= @article.user.name %>
+              <% end %>
+            </h4>
           </td>
 
           <td class="col-md-9">
