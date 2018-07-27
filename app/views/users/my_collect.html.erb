@@ -15,31 +15,26 @@
       </ul>
 
       <div class="col-md-10">
-        <div class="my-draft">
+        <div class="my-collect">
           <table class="table table-striped">
-            <% @user.articles.each do |article| %>
-                <% if article.status == "draft" %>
-                <tr>
-                  <td class="col-md-2">
-                    <%= link_to article_path(article) do %>
-                      <%= truncate(article.title, length: 12) %>
-                    <% end %>
-                  </td>
-                  <td class="col-md-2">Published</td>
-                  <td class="col-md-2"><%= time_tag(article.updated_at) %></td>
-                  <td class="col-md-2">
-                    <% if current_user.id == article.user_id %>
-                      <%= link_to 'Edit', edit_article_path(article) %>&emsp;
-                      <%= link_to 'Delete', article_path(article), method: :delete, data: { confirm: "Are you sure?" } %>
-                    <% end %>
-                  </td>
-                  <td class="col-md-2"></td>
-                </tr>
-              <% end %>
+            <% @user.collected_articles.each do |cr| %>
+              <tr>
+                <td class="col-md-8">
+                  <%= link_to article_path(cr) do %>
+                    <%= truncate(cr.title, length: 12) %>
+                  <% end %>
+                </td>
+                <td class="col-md-4">
+                  <% if cr.is_collected?(current_user) %>
+                    <%= link_to 'Uncollect', uncollect_article_path(cr), method: :post, class: "btn btn-info" %>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
           </table>
         </div>
       </div>
+
 
     </div>
   </div>
