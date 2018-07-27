@@ -63,10 +63,16 @@
         <tr>
           <td class="col-md-3">
             <% if comment.user.avatar? %>
+              <%= link_to user_path(comment.user) do %>
                 <%= image_tag comment.user.avatar.url, width: '150px' %>
+              <% end %>
             <% end %>
 
-            <h4><%= comment.user.name %></h4>    
+            <h4>
+              <%= link_to user_path(comment.user) do %>
+                <%= comment.user.name %>
+              <% end %>
+            </h4>
           </td>
 
           <td>
