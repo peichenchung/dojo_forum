@@ -8,10 +8,12 @@
             <h2><%= @article.title %></h2>
 
             <div class="collect-button">
-              <% if @article.is_collected?(current_user) %>
-                <%= link_to 'Uncollect', uncollect_article_path(@article), method: :post, class: "btn btn-info" %>
-              <% else %>
-                <%= link_to 'Collect', collect_article_path(@article), method: :post, class: "btn btn-primary" %>
+              <% if @article.status != "draft" %><!-- draft文章頁面不要有collect button-->
+                <% if @article.is_collected?(current_user) %>
+                  <%= link_to 'Uncollect', uncollect_article_path(@article), method: :post, class: "btn btn-info" %>
+                <% else %>
+                  <%= link_to 'Collect', collect_article_path(@article), method: :post, class: "btn btn-primary" %>
+                <% end %>
               <% end %>
             </div>
           </td>
