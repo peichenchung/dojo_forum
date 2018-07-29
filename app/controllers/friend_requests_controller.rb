@@ -27,12 +27,17 @@ class FriendRequestsController < ApplicationController
 
   def destroy #取消（送出的）交友請求
     @friend_request = current_user.friend_requests.where(friend_id: params[:friend_id]).first
-
-    if @friend_request.present?
-      @friend_request.destroy
-    end
+    @friend_request.destroy
 
     flash[:alert] = "You just canceled a friend request"
+    redirect_back(fallback_location: root_path)
+  end
+
+  def ignore #拒絕好友請求
+    @inverse_friend_request = current_user.inverse_friend_requests.where(friend_id: params[:id]).first
+    @inverse_friend_request.destroy
+
+    flash[:alert] = "You just rejected a friend request"
     redirect_back(fallback_location: root_path)
   end
 end
