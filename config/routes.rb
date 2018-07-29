@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :friend_requests, only: [:create, :update, :destroy]
+
   resources :categories, only: :show
   root "articles#index"
 
