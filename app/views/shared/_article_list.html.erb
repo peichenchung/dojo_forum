@@ -31,7 +31,7 @@
     <% @articles.each do |article| %>
     <tr>
       <% if article.status == "publish" %>
-        <td></td>
+        <td class="article-replies-count"><%= article.replies_count %></td>
         <td>
           <%= link_to article_path(article) do %>
             <%= article.title %>
