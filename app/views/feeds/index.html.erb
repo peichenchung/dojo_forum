@@ -1,7 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      Feeds
+
+      <div class="bg-info">
+        <div class="user-count col-md-4">
+          <h3>User</h3>
+          <h4><%= User.all.size %></h4>
+        </div>
+        
+        <div class="post-count col-md-4">
+          <h3>Post</h3>
+          <h4><%= Article.all.size %></h4>
+        </div>
+
+        <div class="comment-count col-md-4">
+          <h3>Comment</h3>
+          <h4><%= Comment.all.size %></h4>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
 
 
 
