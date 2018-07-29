@@ -49,6 +49,8 @@
                 <% end %>
                 <br>
                 <h5><%= ipf.name %></h5>
+                <%= link_to 'Accept', friend_request_path(friend_id: ipf), method: :patch, class: "btn btn-default"%>
+                <%= link_to 'Ignore', ignore_friend_request_path(friend_id: ipf), method: :delete, class: "btn btn-danger" %>
               </div>
             <% end %>
 
