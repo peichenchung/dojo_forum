@@ -34,4 +34,13 @@ class User < ApplicationRecord
   def admin?
     self.role == "admin"
   end
+
+  def friend?(user)
+    self.friends.include?(user)
+  end
+
+  def all_friends
+    all_friends = self.friends + self.inverse_friends
+    return all_friends.uniq
+  end
 end

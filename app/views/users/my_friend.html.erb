@@ -14,8 +14,10 @@
         <li role="presentation" class="active col-md-2"><%= link_to 'My Friend', my_friend_user_path(@user) %></li>
       </ul>
 
-      <% if current_user == @user %>
-        <div class="col-md-10">
+      <div class="col-md-10">
+
+        <% if current_user == @user %>
+
           <!-- 送出的好友邀請 -->
           <div class="pending-friends bg-info">
             <h4>Waiting for response</h4>
@@ -56,9 +58,14 @@
 
             <div class="clearfix"></div>
           </div>
-      
-        </div><!-- col-md-10 -->
-      <% end %>
+        
+        <% end %>
+
+        <!-- 好友列表 -->
+        
+
+
+      </div><!-- col-md-10 -->
 
     </div>
   </div>
