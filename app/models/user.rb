@@ -12,7 +12,13 @@ class User < ApplicationRecord
   has_many :collects, dependent: :destroy
   has_many :collected_articles, through: :collects, source: :article
 
-  validates_presence_of :name
+  has_many :friendships, dependent: :destroy #一個user擁有很多friendship記錄
+  has_many :friends, through: :friendships #透過friendship記錄,使用者擁有很多好友(user)
+
+  has_many :inverse_friendships, class_name: "Friendship", foreign_key: "friend_id"
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
+
+  validates_presence_of :name #註冊時必填
   mount_uploader :avatar, AvatarUploader
 
   def admin?
