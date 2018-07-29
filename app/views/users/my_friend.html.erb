@@ -21,18 +21,22 @@
           <!-- 送出的好友邀請 -->
           <div class="pending-friends bg-info">
             <h4>Waiting for response</h4>
-
-            <% @user.pending_friends.each do |pf| %>
-              <div class="col-md-2">
-                <% if pf.avatar? %>
-                  <%= image_tag pf.avatar.url, width: '100px', class: "img-rounded" %>
-                <% else %>
-                  <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
-                <% end %>
-                <br>
-                <h5><%= pf.name %></h5>
-                <p><%= link_to 'Cancel', friend_request_path(friend_id: pf), method: :delete, class: "btn btn-danger" %></p>
-              </div>
+            
+            <% if @user.pending_friends.any? %>
+              <% @user.pending_friends.each do |pf| %>
+                <div class="col-md-2">
+                  <% if pf.avatar? %>
+                    <%= image_tag pf.avatar.url, width: '100px', class: "img-rounded" %>
+                  <% else %>
+                    <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
+                  <% end %>
+                  <br>
+                  <h5><%= pf.name %></h5>
+                  <p><%= link_to 'Cancel', friend_request_path(friend_id: pf), method: :delete, class: "btn btn-danger" %></p>
+                </div>
+              <% end %>
+            <% else %>
+              <p>你目前沒有送出任何交友請求，交點朋友吧！</p>
             <% end %>
 
             <div class="clearfix"></div>
@@ -42,18 +46,22 @@
           <div class="inverse-pending-friends bg-warning">
             <h4>Incoming friend requests</h4>
 
-            <% @user.inverse_pending_friends.each do |ipf| %>
-              <div class="col-md-2">
-                <% if ipf.avatar? %>
-                  <%= image_tag ipf.avatar.url, width: '100px', class: "img-rounded" %>
-                <% else %>
-                  <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
-                <% end %>
-                <br>
-                <h5><%= ipf.name %></h5>
-                <p><%= link_to 'Accept', friend_request_path(friend_id: ipf), method: :patch, class: "btn btn-default"%></p>
-                <p><%= link_to 'Ignore', ignore_friend_request_path(friend_id: ipf), method: :delete, class: "btn btn-danger" %></p>
-              </div>
+            <% if @user.inverse_pending_friends.any? %>
+              <% @user.inverse_pending_friends.each do |ipf| %>
+                <div class="col-md-2">
+                  <% if ipf.avatar? %>
+                    <%= image_tag ipf.avatar.url, width: '100px', class: "img-rounded" %>
+                  <% else %>
+                    <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
+                  <% end %>
+                  <br>
+                  <h5><%= ipf.name %></h5>
+                  <p><%= link_to 'Accept', friend_request_path(friend_id: ipf), method: :patch, class: "btn btn-default"%></p>
+                  <p><%= link_to 'Ignore', ignore_friend_request_path(friend_id: ipf), method: :delete, class: "btn btn-danger" %></p>
+                </div>
+              <% end %>
+            <% else %>
+              <p>你目前沒有收到任何交友請求QQ</p>
             <% end %>
 
             <div class="clearfix"></div>
@@ -65,18 +73,22 @@
         <div class="all-friends bg-danger">
           <h4>Frined list</h4>
 
-          <% @user.all_friends.each do |friend| %>
-            <% if friend.avatar? %>
-              <%= image_tag friend.avatar.url, width: '100px', class: "img-rounded" %>
-            <% else %>
-              <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
-            <% end %>
-            <br>
-            <h5><%= friend.name %></h5>
+          <% if @user.all_friends.any? %>
+            <% @user.all_friends.each do |friend| %>
+              <% if friend.avatar? %>
+                <%= image_tag friend.avatar.url, width: '100px', class: "img-rounded" %>
+              <% else %>
+                <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
+              <% end %>
+              <br>
+              <h5><%= friend.name %></h5>
 
-            <% if current_user == @user %>
-              <p><%= link_to 'Unfriend', friendship_path(friend_id: friend), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></p>
+              <% if current_user == @user %>
+                <p><%= link_to 'Unfriend', friendship_path(friend_id: friend), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></p>
+              <% end %>
             <% end %>
+          <% else %>
+            <p>天哪！你目前沒有朋友......</p>
           <% end %>
         </div>
 
