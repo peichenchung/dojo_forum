@@ -51,8 +51,8 @@
                 <% end %>
                 <br>
                 <h5><%= ipf.name %></h5>
-                <%= link_to 'Accept', friend_request_path(friend_id: ipf), method: :patch, class: "btn btn-default"%>
-                <%= link_to 'Ignore', ignore_friend_request_path(friend_id: ipf), method: :delete, class: "btn btn-danger" %>
+                <p><%= link_to 'Accept', friend_request_path(friend_id: ipf), method: :patch, class: "btn btn-default"%></p>
+                <p><%= link_to 'Ignore', ignore_friend_request_path(friend_id: ipf), method: :delete, class: "btn btn-danger" %></p>
               </div>
             <% end %>
 
@@ -62,8 +62,19 @@
         <% end %>
 
         <!-- 好友列表 -->
-        
+        <div class="all-friends bg-danger">
+          <h4>Frined list</h4>
 
+          <% @user.all_friends.each do |friend| %>
+            <% if friend.avatar? %>
+              <%= image_tag friend.avatar.url, width: '100px', class: "img-rounded" %>
+            <% else %>
+              <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
+            <% end %>
+            <br>
+            <h5><%= friend.name %></h5>
+          <% end %>
+        </div>
 
       </div><!-- col-md-10 -->
 
