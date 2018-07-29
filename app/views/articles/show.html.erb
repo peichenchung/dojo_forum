@@ -25,6 +25,8 @@
               <%= link_to user_path(@article.user) do %>
                 <%= image_tag @article.user.avatar.url, width: '150px' %>
               <% end %>
+            <% else %>
+              <%= image_tag ("350x350.png"), width: '150px' %>
             <% end %>
 
             <h4>
@@ -39,17 +41,21 @@
                 <p>您已發送交友請求，等待對方回覆中！</p>
               <% elsif current_user.inverse_pending_friends.include?(@article.user) %>
                 <p>您有收到對方的交友請求，請盡快回覆！</p>
+              <% elsif current_user.friend?(@article.user) %>
+                <p>你們已經是好友囉！</p>
               <% else %>
                 <%= link_to 'Friend', friend_requests_path(friend_id: @article.user), method: :post, class: "btn btn-default" %>
               <% end %>
-
             <% end %>
+
           </td>
 
           <td class="col-md-9">
             <div>
               <% if @article.image? %>
                 <%= image_tag @article.image.url, width: '200px' %>
+              <% else %>
+                <%= image_tag ("350x350.png"), width: '200px' %>
               <% end %>
             </div>
 
@@ -80,6 +86,8 @@
               <%= link_to user_path(comment.user) do %>
                 <%= image_tag comment.user.avatar.url, width: '150px' %>
               <% end %>
+            <% else %>
+              <%= image_tag ("350x350.png"), width: '150px' %>
             <% end %>
 
             <h4>
@@ -87,6 +95,19 @@
                 <%= comment.user.name %>
               <% end %>
             </h4>
+
+            <!-- Friend / Unfriend button -->
+            <% if comment.user != current_user %><!-- 不會發送好友請求給自己 -->
+              <% if current_user.pending_friends.include?(comment.user) %>
+                <p>您已發送交友請求，等待對方回覆中！</p>
+              <% elsif current_user.inverse_pending_friends.include?(comment.user) %>
+                <p>您有收到對方的交友請求，請盡快回覆！</p>
+              <% elsif current_user.friend?(comment.user) %>
+                <p>你們已經是好友囉！</p>
+              <% else %>
+                <%= link_to 'Friend', friend_requests_path(friend_id: comment.user), method: :post, class: "btn btn-default" %>
+              <% end %>
+            <% end %>
           </td>
 
           <td>
