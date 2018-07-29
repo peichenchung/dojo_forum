@@ -1,7 +1,7 @@
 class FriendRequestsController < ApplicationController
   def create #送出好友請求
     friend = User.find(params[:friend_id])
-    @friend_request = current_user.friend_request.new(friend: friend)
+    @friend_request = current_user.friend_requests.new(friend: friend)
 
     if @friend_request.save #搭配唯一性驗證
       flash[:notice] = "You just sent a friend request"
