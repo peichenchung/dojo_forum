@@ -22,9 +22,6 @@ Rails.application.routes.draw do
   resources :friendships, only: [:destroy]
 
   resources :friend_requests, only: [:create, :update, :destroy] do
-    resources :friendships, only: [:create]
-    #先送出friend_request->對方同意->friendship才成立
-
     member do
       delete :ignore
     end

@@ -27,7 +27,7 @@
                 <% if pf.avatar? %>
                   <%= image_tag pf.avatar.url, width: '100px', class: "img-rounded" %>
                 <% else %>
-                  <% image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
+                  <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
                 <% end %>
                 <br>
                 <h5><%= pf.name %></h5>
@@ -73,7 +73,7 @@
             <% end %>
             <br>
             <h5><%= friend.name %></h5>
-            
+
             <% if current_user == @user %>
               <p><%= link_to 'Unfriend', friendship_path(friend_id: friend), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></p>
             <% end %>
