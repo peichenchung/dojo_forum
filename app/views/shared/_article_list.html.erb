@@ -37,7 +37,7 @@
             <%= article.title %>
           <% end %>
         </td>
-        <td></td>
+        <td><%= time_tag(article.comments.last.updated_at) %></td>
         <td></td>
       <% end %>
     </tr>
