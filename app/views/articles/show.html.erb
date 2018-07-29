@@ -32,6 +32,18 @@
                 <%= @article.user.name %>
               <% end %>
             </h4>
+
+            <!-- Friend / Unfriend button -->
+            <% if @article.user != current_user %><!-- 不會發送好友請求給自己 -->
+              <% if current_user.pending_friends.include?(@article.user) %>
+                <p>您已發送交友請求，等待對方回覆中！</p>
+              <% elsif current_user.inverse_pending_friends.include?(@article.user) %>
+                <p>您有收到對方的交友請求，請盡快回覆！</p>
+              <% else %>
+                <%= link_to 'Friend', friend_requests_path(friend_id: @article.user), method: :post, class: "btn btn-default" %>
+              <% end %>
+
+            <% end %>
           </td>
 
           <td class="col-md-9">
