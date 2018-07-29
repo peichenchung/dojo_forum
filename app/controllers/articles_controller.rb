@@ -7,6 +7,11 @@ class ArticlesController < ApplicationController
     @categories = Category.all
   end
 
+  def replies_count
+    @articles = Article.order(replies_count: :desc).page(params[:page]).per(20)
+    @categories = Category.all
+  end
+
   def new
     @article = Article.new
   end

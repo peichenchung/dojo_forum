@@ -3,8 +3,10 @@
     <tr>
       <td class="col-md-2">
         <button type="button" class="btn">
-          Replies count
-          <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+          <%= link_to replies_count_articles_path do %>
+            Replies count
+            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+          <% end %>
         </button>
       </td>
 

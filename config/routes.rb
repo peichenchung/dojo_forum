@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
 
+    collection do
+      get :replies_count #所有餐廳依最多回覆數排序
+    end
+
     member do
       post :collect
       post :uncollect
