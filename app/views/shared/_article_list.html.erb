@@ -3,17 +3,16 @@
     <tr>
       <td class="col-md-2">
         <button type="button" class="btn">
-          <% if current_page?(root_path) %>
-            <%= link_to replies_count_articles_path do %>
-              Replies count
-              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-            <% end %>
-          <% elsif current_page?(replies_count_articles_path) %>
+          <% if current_page?(root_path) || current_page?(replies_count_articles_path) %>
             <%= link_to replies_count_articles_path do %>
               Replies count
               <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
             <% end %>
           <% else %>
+            <%= link_to replies_count_category_path do %>
+              Replies count
+              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            <% end %>
           <% end %>
         </button>
       </td>
@@ -36,7 +35,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @articles.each do |article| %>
+    <% articles.each do |article| %>
     <tr>
       <% if article.status == "publish" %>
         <td class="article-replies-count"><%= article.replies_count %></td>
@@ -55,6 +54,6 @@
 
 <div class="col-sm-12 col-md-12">
   <div class="text-center">
-    <%= paginate @articles %>
+    <%= paginate articles %>
   </div>
 </div>

@@ -31,7 +31,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :categories, only: :show
+  resources :categories, only: :show do
+    member do
+      get :replies_count
+    end
+  end
+    
   root "articles#index"
 
 
