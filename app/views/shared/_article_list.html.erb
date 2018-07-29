@@ -3,9 +3,17 @@
     <tr>
       <td class="col-md-2">
         <button type="button" class="btn">
-          <%= link_to replies_count_articles_path do %>
-            Replies count
-            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+          <% if current_page?(root_path) %>
+            <%= link_to replies_count_articles_path do %>
+              Replies count
+              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            <% end %>
+          <% elsif current_page?(replies_count_articles_path) %>
+            <%= link_to replies_count_articles_path do %>
+              Replies count
+              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            <% end %>
+          <% else %>
           <% end %>
         </button>
       </td>
