@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-12">
 
+      <!-- 上方區塊 -->
       <div class="bg-info">
         <div class="user-count col-md-4">
           <h3>User</h3>
@@ -21,7 +22,34 @@
         <div class="clearfix"></div>
       </div>
 
+      <!-- 下方區塊 -->
+      <div class="bg-warning">
+        <div class="chatterbox col-md-5">
+          <h2>Chatterbox</h2>
+          <table class="table">
+            <% @users.each_with_index do |user, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><h4><%= user.name %></h4></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
 
+        <div class="popular col-md-5">
+          <h2>Most Popular Post</h2>
+          <table class="table">
+            <% @articles.each_with_index do |article, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><h4><%= article.title %></h4></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
 
 
 
