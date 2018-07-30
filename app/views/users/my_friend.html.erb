@@ -83,24 +83,28 @@
 
           <% if @user.all_friends.any? %>
             <% @user.all_friends.each do |friend| %>
-              <% if friend.avatar? %>
-                <%= image_tag friend.avatar.url, width: '100px', class: "img-rounded" %>
-              <% else %>
-                <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
-              <% end %>
-              <br>
+              <div class="col-md-2">
+                <% if friend.avatar? %>
+                  <%= image_tag friend.avatar.url, width: '100px', class: "img-rounded" %>
+                <% else %>
+                  <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
+                <% end %>
+                <br>
 
-              <%= link_to user_path(friend) do %>
-                <h5><%= friend.name %></h5>
-              <% end %>
+                <%= link_to user_path(friend) do %>
+                  <h5><%= friend.name %></h5>
+                <% end %>
 
-              <% if current_user == @user %>
-                <p><%= link_to 'Unfriend', friendship_path(friend_id: friend), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></p>
-              <% end %>
+                <% if current_user == @user %>
+                  <p><%= link_to 'Unfriend', friendship_path(friend_id: friend), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></p>
+                <% end %>
+              </div>
             <% end %>
           <% else %>
             <p>天哪！你目前沒有朋友......</p>
           <% end %>
+
+          <div class="clearfix"></div>
         </div>
 
       </div><!-- col-md-10 -->
