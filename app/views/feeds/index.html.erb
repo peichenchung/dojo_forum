@@ -30,7 +30,11 @@
             <% @users.each_with_index do |user, index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><h4><%= user.name %></h4></td>
+                <td>
+                  <%= link_to user_path(user) do %>
+                    <h4><%= user.name %></h4>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </table>
@@ -42,7 +46,11 @@
             <% @articles.each_with_index do |article, index| %>
               <tr>
                 <td><%= index + 1 %></td>
-                <td><h4><%= article.title %></h4></td>
+                <td>
+                  <%= link_to article_path(article) do %>
+                    <h4><%= article.title %></h4>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </table>
