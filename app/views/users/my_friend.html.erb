@@ -31,7 +31,11 @@
                     <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
                   <% end %>
                   <br>
-                  <h5><%= pf.name %></h5>
+
+                  <%= link_to user_path(pf) do %>
+                    <h5><%= pf.name %></h5>
+                  <% end %>
+
                   <p><%= link_to 'Cancel', friend_request_path(friend_id: pf), method: :delete, class: "btn btn-danger" %></p>
                 </div>
               <% end %>
@@ -55,7 +59,11 @@
                     <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
                   <% end %>
                   <br>
-                  <h5><%= ipf.name %></h5>
+
+                  <%= link_to user_path(ipf) do %>
+                    <h5><%= ipf.name %></h5>
+                  <% end %>
+
                   <p><%= link_to 'Accept', friend_request_path(friend_id: ipf), method: :patch, class: "btn btn-default"%></p>
                   <p><%= link_to 'Ignore', ignore_friend_request_path(friend_id: ipf), method: :delete, class: "btn btn-danger" %></p>
                 </div>
@@ -81,7 +89,10 @@
                 <%= image_tag ("350x350.png"), width: '100px', class: "img-rounded" %>
               <% end %>
               <br>
-              <h5><%= friend.name %></h5>
+
+              <%= link_to user_path(friend) do %>
+                <h5><%= friend.name %></h5>
+              <% end %>
 
               <% if current_user == @user %>
                 <p><%= link_to 'Unfriend', friendship_path(friend_id: friend), class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } %></p>
