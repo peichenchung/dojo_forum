@@ -7,7 +7,8 @@ namespace :dev do
         email: "#{user_name}@example.com",
         password: "12345678",
         name: "#{user_name}",
-        intro: FFaker::Lorem.paragraph
+        intro: FFaker::Lorem.paragraph,
+        avatar: FFaker::Avatar.image
       )
     end
 
