@@ -44,7 +44,13 @@
             <%= article.title %>
           <% end %>
         </td>
-        <td><%= time_tag(article.comments.last.updated_at) if article.comments.any? %></td>
+        <td>
+          <% if article.comments.any? %>
+            <%= time_tag(article.comments.last.updated_at) %>
+          <% else %>
+            <%= time_tag(article.updated_at) %>
+          <% end %>
+        </td>
         <td></td>
       <% end %>
     </tr>
