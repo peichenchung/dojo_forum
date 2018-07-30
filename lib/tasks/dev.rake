@@ -33,4 +33,23 @@ namespace :dev do
     puts "fake articles created"
   end
 
+
+  task fake_comment: :environment do
+    Comment.destroy_all
+
+    
+    300.times do
+      user = User.ids.sample
+      article = Article.ids.sample
+      comment = Comment.create!(
+        content: FFaker::Lorem.paragraph,
+        user_id: user,
+        article_id: article
+      )
+    end
+
+    puts "fake comments created"
+  end
+
+
 end
