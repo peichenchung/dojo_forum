@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
   def destroy
     #@article = Article.find(params[:id])
 
-    if current_user.id == @article.user_id
+    if current_user.id == @article.user_id || current_user.role == 'admin'
       @article.destroy
       redirect_to root_path
       flash[:alert] = "article deleted"

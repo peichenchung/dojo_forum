@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     @article = Article.find(params[:article_id])
     @comment = Comment.find(params[:id])
 
-    if current_user == @comment.user
+    if current_user == @comment.user || current_user.role == 'admin'
       @comment.destroy
       redirect_to article_path(@article)
     end
