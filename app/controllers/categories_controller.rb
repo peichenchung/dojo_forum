@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   def show
     @categories = Category.all
     @category = Category.find(params[:id])
-    @articles = @category.articles.page(params[:page]).per(20)
+    @articles = @category.articles.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def replies_count
