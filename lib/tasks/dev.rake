@@ -52,4 +52,19 @@ namespace :dev do
   end
 
 
+  task fake_collect: :environment do
+    Collect.destroy_all
+
+    User.all.each do |user|
+      10.times do
+        article = Article.ids.sample
+        user.collects.create!(
+          article_id: article
+        )
+      end
+    end
+
+    puts "fake collects created"
+  end
+
 end
