@@ -14,4 +14,23 @@ namespace :dev do
     puts "fake users created"
   end
 
+
+  task fake_article: :environment do
+    Article.destroy_all
+
+    User.all.each do |user|
+      5.times do
+        category = Category.ids.sample
+        article = user.articles.create!(
+          title: FFaker::Book.title,
+          content: FFaker::Lorem.paragraph,
+          status: ['publish', 'publish', 'draft'].sample,
+          category_ids: [category]
+        )
+      end
+    end
+
+    puts "fake articles created"
+  end
+
 end
