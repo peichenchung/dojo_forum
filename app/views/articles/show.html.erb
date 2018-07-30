@@ -75,6 +75,9 @@
                 <%= link_to 'Edit', edit_article_path(@article) %>&emsp;
                 <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %>
               <% end %>
+              <% if current_user.role == 'admin' && current_user != @article.user %>
+                <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %>
+              <% end %>
             </div>
           </td>
         </tr>
@@ -116,6 +119,9 @@
             <div>
               <% if current_user == comment.user %>
                 <%= link_to 'Edit', edit_article_comment_path(@article, comment) %>&emsp;
+                <%= link_to 'Delete', article_comment_path(@article, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+              <% end %>
+              <% if current_user.role == 'admin' && current_user != comment.user %>
                 <%= link_to 'Delete', article_comment_path(@article, comment), method: :delete, data: { confirm: "Are you sure?" } %>
               <% end %>
             </div>
