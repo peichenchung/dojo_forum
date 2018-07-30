@@ -7,9 +7,9 @@
 <!-------------------------------------------- 下方區塊 -------------------------------------------->
 
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active col-md-2""><%= link_to 'My Post', user_path(@user) %></li>
+        <li role="presentation" class="col-md-2""><%= link_to 'My Post', user_path(@user) %></li>
         <li role="presentation" class="col-md-2"><%= link_to 'My Comment', my_comment_user_path(@user) %></li>
-        <li role="presentation" class="col-md-2"><%= link_to 'My Collect', my_collect_user_path(@user) %></li>
+        <li role="presentation" class="active col-md-2"><%= link_to 'My Collect', my_collect_user_path(@user) %></li>
         <li role="presentation" class="col-md-2"><%= link_to 'My Draft', my_draft_user_path(@user) %></li>
         <li role="presentation" class="col-md-2"><%= link_to 'My Friend', my_friend_user_path(@user) %></li>
       </ul>
@@ -21,7 +21,7 @@
               <tr>
                 <td class="col-md-8">
                   <%= link_to article_path(cr) do %>
-                    <h5><%= truncate(cr.title, length: 12) %></h5>
+                    <h5><%= truncate(cr.title, length: 50) %></h5>
                   <% end %>
                 </td>
                 <td class="col-md-4">
