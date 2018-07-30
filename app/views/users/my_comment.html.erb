@@ -20,7 +20,10 @@
             <% @user.comments.each do |comment| %>
               <tr>
                 <td class="col-md-8">
-                  <h4><%= comment.article.title %></h4>
+                  <%= link_to article_path(comment.article) do %>
+                    <h4><%= comment.article.title %></h4>
+                  <% end %>
+                  
                   <p><%= simple_format(comment.content) %></p>
                 </td>
                 <td class="col-md-4">
