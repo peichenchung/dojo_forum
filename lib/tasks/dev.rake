@@ -8,7 +8,7 @@ namespace :dev do
         password: "12345678",
         name: "#{user_name}",
         intro: FFaker::Lorem.paragraph,
-        avatar: FFaker::Avatar.image
+        avatar: File.open(Rails.root.join("app/assets/images/avatar/#{rand(1..18)}.png"))
       )
     end
 

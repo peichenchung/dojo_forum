@@ -1,6 +1,7 @@
 # Default admin
 
-User.create(name: "admin", email: "admin@example.com", password: "12345678", role: "admin")
+User.create(name: "Gudetama", email: "admin@example.com", password: "12345678", role: "admin", 
+  avatar: File.open(Rails.root.join("app/assets/images/gudetama.png")))
 puts "Default admin created!"
 
 # Category
