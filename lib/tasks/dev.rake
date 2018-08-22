@@ -1,19 +1,19 @@
 namespace :dev do
 
-  task fake_user: :environment do
-    30.times do |i|
-      user_name = FFaker::Name.first_name
-      User.create!(
-        email: "#{user_name}@example.com",
-        password: "12345678",
-        name: "#{user_name}",
-        intro: FFaker::Lorem.paragraph,
-        avatar: File.open(Rails.root.join("app/assets/images/avatar/#{rand(1..18)}.png"))
-      )
-    end
+  #task fake_user: :environment do
+    #30.times do |i|
+      #user_name = FFaker::Name.first_name
+      #User.create!(
+        #email: "#{user_name}@example.com",
+        #password: "12345678",
+        #name: "#{user_name}",
+        #intro: FFaker::Lorem.paragraph,
+        #avatar: File.open(Rails.root.join("app/assets/images/avatar/#{rand(1..18)}.png"))
+      #)
+    #end
 
-    puts "fake users created"
-  end
+    #puts "fake users created"
+  #end
 
   #改成利用uinames建立假的User資料
   task fetch_user: :environment do
