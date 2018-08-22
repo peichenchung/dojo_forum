@@ -15,6 +15,31 @@ namespace :dev do
     puts "fake users created"
   end
 
+  #改成利用uinames建立假的User資料
+  task fetch_user: :environment do
+
+    User.destroy_all
+
+    url = "https://uinames.com/api/?ext&region=england"
+
+    30.times do
+      response = RestClient.get(url)
+      data = JSON.parse(response.body)
+
+      user = User.create!(
+        name: data["name"],
+        email: data["email"],
+        remote_avatar_url: data["photo"], #https://medium.com/@badbugwen/7f146289a838
+        password: "12345678",
+        intro: FFaker::Lorem.paragraph,
+      )
+
+      puts "created user #{user.name}"
+    end
+
+    puts "now you have #{User.count} users data"
+  end
+
 
   task fake_article: :environment do
     Article.destroy_all
