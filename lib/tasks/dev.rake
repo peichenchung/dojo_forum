@@ -29,7 +29,7 @@ namespace :dev do
       user = User.create!(
         name: data["name"],
         email: data["email"],
-        remote_avatar_url: data["photo"], #https://medium.com/@badbugwen/7f146289a838
+        avatar: File.open(Rails.root.join("public/avatar/user#{rand(1..18)}.png")),
         password: "12345678",
         intro: FFaker::Lorem.paragraph,
       )
