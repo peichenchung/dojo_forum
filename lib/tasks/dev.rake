@@ -29,7 +29,7 @@ namespace :dev do
       user = User.create!(
         name: data["name"],
         email: data["email"],
-        avatar: File.open(Rails.root.join("public/avatar/#{rand(1..18)}.png")),
+        avatar: File.open("#{Rails.root}/public/avatar/#{rand(1..18)}.png"),
         password: "12345678",
         intro: FFaker::Lorem.paragraph,
       )
