@@ -34,6 +34,11 @@
       </div>
 
       <div class="form-group">
+        <%= f.label :authority, 'Who can see' %>
+        <%= f.select :authority, [ 'all', 'friend', 'myself' ] %>
+      </div>
+
+      <div class="form-group">
         <% Category.all.each do |category| %>
           <%= check_box_tag 'article[category_ids][]', category.id, @article.category_ids.include?(category.id), id: dom_id(category) %>
           <%= label_tag dom_id(category), category.name %><br>
