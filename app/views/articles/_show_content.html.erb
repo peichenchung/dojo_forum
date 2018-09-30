@@ -1,0 +1,148 @@
+<table class="table table-striped table-bordered">
+  <tr>
+    <td colspan="2">
+      <h2><%= @article.title %></h2>
+
+      <div class="collect-button">
+        <% if @article.status != "draft" %><!-- draft文章頁面不要有collect button-->
+          <% if @article.is_collected?(current_user) %>
+            <%= link_to 'Uncollect', uncollect_article_path(@article), method: :post, class: "btn btn-info" %>
+          <% else %>
+            <%= link_to 'Collect', collect_article_path(@article), method: :post, class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="col-md-3">
+      <% if @article.user.avatar? %>
+        <%= link_to user_path(@article.user) do %>
+          <%= image_tag @article.user.avatar.url, width: '150px' %>
+        <% end %>
+      <% else %>
+        <%= image_tag ("350x350.png"), width: '150px' %>
+      <% end %>
+
+      <h4>
+        <%= link_to user_path(@article.user) do %>
+          <%= @article.user.name %>
+        <% end %>
+      </h4>
+
+      <!-- Friend / Unfriend button -->
+      <% if @article.user != current_user %><!-- 不會發送好友請求給自己 -->
+        <% if current_user.pending_friends.include?(@article.user) %>
+          <p>您已發送交友請求，等待對方回覆中！</p>
+        <% elsif current_user.inverse_pending_friends.include?(@article.user) %>
+          <p>您有收到對方的交友請求，請盡快回覆！</p>
+        <% elsif current_user.friend?(@article.user) %>
+          <p>你們已經是好友囉！</p>
+        <% else %>
+          <%= link_to 'Friend', friend_requests_path(friend_id: @article.user), method: :post, class: "btn btn-default" %>
+        <% end %>
+      <% end %>
+
+    </td>
+
+    <td class="col-md-9">
+      <div>
+        <% if @article.image? %>
+          <%= image_tag @article.image.url, width: '200px' %>
+        <% else %>
+          <%= image_tag ("600x300.png"), width: '600px' %>
+        <% end %>
+      </div>
+
+      <div>
+        <% if @article.categories.any? %>
+          文章類別：
+          <% @article.categories.each do |category| %>
+            <%= category.name %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <p><%= simple_format(@article.content) %></p>
+
+      <div>
+        <% if current_user.id == @article.user_id %>
+          <%= link_to 'Edit', edit_article_path(@article) %>&emsp;
+          <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+        <% if current_user.role == 'admin' && current_user != @article.user %>
+          <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+
+  <% @comments.each do |comment| %>
+  <tr>
+    <td class="col-md-3">
+      <% if comment.user.avatar? %>
+        <%= link_to user_path(comment.user) do %>
+          <%= image_tag comment.user.avatar.url, width: '150px' %>
+        <% end %>
+      <% else %>
+        <%= image_tag ("350x350.png"), width: '150px' %>
+      <% end %>
+
+      <h4>
+        <%= link_to user_path(comment.user) do %>
+          <%= comment.user.name %>
+        <% end %>
+      </h4>
+
+      <!-- Friend / Unfriend button -->
+      <% if comment.user != current_user %><!-- 不會發送好友請求給自己 -->
+        <% if current_user.pending_friends.include?(comment.user) %>
+          <p>您已發送交友請求，等待對方回覆中！</p>
+        <% elsif current_user.inverse_pending_friends.include?(comment.user) %>
+          <p>您有收到對方的交友請求，請盡快回覆！</p>
+        <% elsif current_user.friend?(comment.user) %>
+          <p>你們已經是好友囉！</p>
+        <% else %>
+          <%= link_to 'Friend', friend_requests_path(friend_id: comment.user), method: :post, class: "btn btn-default" %>
+        <% end %>
+      <% end %>
+    </td>
+
+    <td>
+      <p><%= simple_format(comment.content) %></p>
+
+      <div>
+        <% if current_user == comment.user %>
+          <%= link_to 'Edit', edit_article_comment_path(@article, comment) %>&emsp;
+          <%= link_to 'Delete', article_comment_path(@article, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+        <% if current_user.role == 'admin' && current_user != comment.user %>
+          <%= link_to 'Delete', article_comment_path(@article, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<div class="container">
+  <div class="row">
+    <%= form_for [@article, @comment] do |f| %>
+      <div class="form-group">
+        <%= f.text_area :content, placeholder: "add comment", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Submit', class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-sm-12 col-md-12">
+  <div class="text-center">
+    <%= paginate @comments %>
+  </div>
+</div>
+
+<%= link_to 'Back to Index', root_path %>

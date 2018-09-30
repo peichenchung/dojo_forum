@@ -37,7 +37,7 @@
   <tbody>
     <% articles.each do |article| %>
     <tr>
-      <% if article.status == "publish" %>
+      <% if article.status == "publish" && article.authority == "all" %>
         <td class="article-replies-count"><%= article.replies_count %></td>
         <td>
           <%= link_to article_path(article) do %>
